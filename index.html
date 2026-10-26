@@ -97,6 +97,15 @@
   .cta { display:block; width:100%; height:56px; border-radius:22px; background:var(--grad); color:#111; font-weight:700; font-size:1rem;
     letter-spacing:-.02em; box-shadow:0 10px 30px -10px rgba(244,142,187,.55); transition:transform .15s,filter .15s; }
   .cta:hover { filter:brightness(1.05) saturate(1.1); }
+  .book { display:flex; align-items:center; justify-content:center; gap:8px; height:48px; margin-top:10px; border-radius:20px; color:#fff; text-decoration:none;
+    font-size:.88rem; font-weight:600; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.32);
+    backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); transition:background .2s,transform .15s; }
+  .book:hover { background:rgba(255,255,255,.2); }
+  .book:active { transform:scale(.98); }
+  .book .icon { width:17px; height:17px; }
+  .sheet-book { display:flex; align-items:center; justify-content:space-between; margin:0 0 12px; padding:12px 14px; border-radius:16px; color:#fff; text-decoration:none;
+    font-size:.84rem; font-weight:600; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.28); }
+  .sheet-book:hover { background:rgba(255,255,255,.16); }
   .cap { margin:12px 0 0; text-align:center; font-size:.68rem; color:var(--muted); }
   .grab { width:120px; height:4px; border-radius:2px; background:rgba(255,255,255,.35); margin:14px auto 0; }
 
@@ -210,6 +219,7 @@
   <symbol id="i-dl" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
 </svg>
 
@@ -254,7 +264,7 @@
     <p class="statement">Company or startup looking for a custom-built app? <em>I've got you covered.</em></p>
     <p class="bio">Software, data &amp; AI engineer. MEng AI, UP Diliman.</p>
     <button class="cta" data-brief>Start a project or collaboration</button>
-    <p class="cap">Free intro call · scope, timeline &amp; price before any work starts</p>
+    <a class="book" href="https://cal.com/guyivanocon/15min" target="_blank" rel="noopener"><svg class="icon"><use href="#i-cal"/></svg>Book a free 15-min call</a>
     <div class="grab" aria-hidden="true"></div>
   </section>
 
@@ -294,6 +304,7 @@
     <div class="bar" aria-hidden="true" style="margin-bottom:16px"></div>
     <h2 id="sheetTitle">Let's work together</h2>
     <p class="sub">Open to projects and collaborations. Free intro call, then a clear scope, timeline and price before any work starts.</p>
+    <a class="sheet-book" href="https://cal.com/guyivanocon/15min" target="_blank" rel="noopener"><span>Prefer to pick a time? Book a free 15-min call</span><svg class="icon"><use href="#i-right"/></svg></a>
     <form class="form" id="form">
       <div class="two">
         <input name="name" placeholder="Your name" required autocomplete="name">
