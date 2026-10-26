@@ -141,6 +141,12 @@
   .post .meta { font-size:.7rem; color:var(--muted); display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   .badge { padding:2px 8px; border-radius:999px; background:rgba(255,255,255,.1); color:#fff; font-size:.64rem; font-weight:600; }
   .ask { font-size:.72rem; font-weight:600; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .cv { display:flex; align-items:center; gap:12px; margin:0 0 12px; padding:12px 14px; border-radius:18px; color:#fff; text-decoration:none;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.28); transition:background .2s,transform .15s; }
+  .cv:hover { background:rgba(255,255,255,.16); }
+  .cv:active { transform:scale(.98); }
+  .cv span { flex:1; } .cv b { display:block; font-size:.88rem; font-weight:600; } .cv small { font-size:.7rem; color:var(--muted); }
+  .cv .go { width:16px; height:16px; opacity:.7; }
   .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:0 0 10px; }
   .steps div { padding:10px; border-radius:16px; background:rgba(255,255,255,.06); border:1px solid var(--line); font-size:.7rem; color:var(--muted); }
   .steps b { display:block; color:#fff; font-size:.76rem; margin-bottom:2px; }
@@ -261,6 +267,9 @@
         <button class="circle" id="collapse" aria-label="Collapse profile" style="margin-top:4px"><svg class="icon"><use href="#i-down"/></svg></button>
       </div>
       <p class="p-bio">Full-stack, mobile/IoT and applied-AI engineer. Software Applications Engineer at Nascent Technologies and volunteer Knowledge Management Manager at 2030 Youth Force PH. MEng AI at UP Diliman, BS CS Cum Laude from UP Mindanao.</p>
+      <a class="cv" href="assets/Guy_Ivan_Ocon_CV.pdf" target="_blank" rel="noopener" download="Guy_Ivan_Ocon_CV.pdf">
+        <svg class="icon"><use href="#i-dl"/></svg><span><b>Download my CV</b><small>PDF · 1 page</small></span><svg class="icon go"><use href="#i-right"/></svg>
+      </a>
       <div class="steps">
         <div><b>1 · Brief</b>Tell me what you need</div>
         <div><b>2 · Call</b>Goals &amp; constraints</div>
