@@ -40,28 +40,20 @@
     background:radial-gradient(60% 50% at 20% 25%,rgba(128,216,255,.28),transparent 70%),radial-gradient(55% 45% at 85% 40%,rgba(244,142,187,.24),transparent 70%),radial-gradient(60% 45% at 55% 5%,rgba(255,202,133,.2),transparent 70%),#101010; }
   .hero::after { content:""; position:absolute; inset:0;
     background:linear-gradient(180deg,rgba(10,10,10,.5) 0%,rgba(10,10,10,0) 22%,rgba(10,10,10,0) 42%,rgba(10,10,10,.82) 82%,var(--bg) 100%); }
-  .phone.open .hero { inset:10px 10px auto 10px; height:44%; border-radius:34px; }
-  .phone.open .hero .art { transform:translateY(calc(-16% + var(--py,0px))) scale(1.08); }
 
   /* ---- top bar ---- */
-  .top { position:absolute; z-index:5; top:0; left:0; right:0; display:flex; align-items:center; justify-content:space-between;
+  .top { position:absolute; z-index:5; top:0; left:0; right:0; display:flex; align-items:center; justify-content:flex-end;
     padding:calc(18px + env(safe-area-inset-top)) 18px 0; }
   .circle { width:36px; height:36px; border-radius:50%; display:grid; place-items:center; background:var(--glass);
     backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%); border:1px solid var(--line);
     transition:transform .15s,background .15s; }
   .circle:hover { background:rgba(60,60,60,.6); }
   .circle:active,.pill-btn:active,.cta:active,.sq:active { transform:scale(.95); }
-  .handle { font:500 .8rem var(--font); color:rgba(255,255,255,.9); opacity:0; transition:opacity .4s; }
-  .phone.open .handle { opacity:1; }
   .pill-btn { background:#fff; color:#0A0A0A; font-weight:600; font-size:.78rem; padding:9px 16px; border-radius:999px; transition:transform .15s; }
-  #qrBtn .i-down,.phone.open #qrBtn .i-qr { display:none; }
-  .phone:not(.open) #qrBtn { visibility:hidden; pointer-events:none; }
-  .phone.open #qrBtn .i-down { display:block; }
 
   /* ---- collapsed profile ---- */
   .profile { position:absolute; z-index:3; left:0; right:0; bottom:0; padding:0 20px calc(26px + env(safe-area-inset-bottom));
     transition:opacity .35s,transform .6s var(--ease); }
-  .phone.open .profile { opacity:0; transform:translateY(40px); pointer-events:none; visibility:hidden; transition:opacity .3s,transform .6s var(--ease),visibility 0s .6s; }
   .open-pill { display:inline-flex; align-items:center; gap:8px; margin-bottom:12px; padding:7px 13px; border-radius:999px; font-size:.72rem; font-weight:600;
     background:var(--glass); border:1px solid var(--line); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
   .open-pill i { width:7px; height:7px; border-radius:50%; background:#3ddc84; box-shadow:0 0 0 0 rgba(61,220,132,.6); animation:live 2s infinite; }
@@ -102,6 +94,8 @@
   .cta .arr { display:inline-block; margin-left:6px; }
   .cta[data-brief]:hover { transform:translateY(-2px); }
   .cta:hover { filter:brightness(1.05) saturate(1.1); }
+  .row2 { display:grid; grid-template-columns:1.25fr 1fr; gap:10px; margin-top:10px; }
+  .row2 .book { margin-top:0; font-size:.82rem; }
   .book { display:flex; align-items:center; justify-content:center; gap:8px; height:48px; margin-top:10px; border-radius:20px; color:#fff; text-decoration:none;
     font-size:.88rem; font-weight:600; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.32);
     backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); transition:background .2s,transform .15s; }
@@ -113,60 +107,6 @@
   .sheet-book:hover { background:rgba(255,255,255,.16); }
   .cap { margin:12px 0 0; text-align:center; font-size:.68rem; color:var(--muted); }
   .grab { width:120px; height:4px; border-radius:2px; background:rgba(255,255,255,.35); margin:14px auto 0; }
-
-  /* ---- expanded panel ---- */
-  .panel { position:absolute; z-index:4; left:10px; right:10px; bottom:10px; top:calc(30% - 4px); border-radius:30px; background:var(--glass);
-    backdrop-filter:blur(30px) saturate(150%); -webkit-backdrop-filter:blur(30px) saturate(150%); border:1px solid var(--line);
-    display:flex; flex-direction:column; overflow:hidden; transform:translateY(calc(100% + 20px)); opacity:0; visibility:hidden;
-    transition:transform .65s var(--ease),opacity .4s,visibility 0s .65s; box-shadow:0 -20px 60px -20px rgba(0,0,0,.6); }
-  .phone.open .panel { transform:none; opacity:1; visibility:visible; transition:transform .65s var(--ease),opacity .4s,visibility 0s; }
-  .scroll { flex:1; overflow-y:auto; overscroll-behavior:contain; padding:10px 18px 12px; scrollbar-width:none; }
-  .scroll::-webkit-scrollbar { display:none; }
-  .bar { width:44px; height:4px; border-radius:2px; background:rgba(255,255,255,.4); margin:2px auto 14px; }
-  .p-head { display:flex; justify-content:space-between; align-items:flex-start; }
-  .p-name { margin:0; font-weight:800; font-size:2.35rem; line-height:.96; letter-spacing:-.045em; }
-  .p-bio { margin:10px 0 14px; font-size:.82rem; color:rgba(255,255,255,.78); }
-  .p-stats { display:flex; gap:20px; margin-bottom:14px; }
-  .pills { display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; margin:0 -18px 12px; padding:0 18px; }
-  .pills::-webkit-scrollbar { display:none; }
-  .pill { flex:none; padding:7px 14px; border-radius:999px; font-size:.74rem; font-weight:500; color:rgba(255,255,255,.8);
-    border:1px solid var(--line); background:rgba(255,255,255,.05); transition:all .2s; }
-  .pill:hover { background:rgba(255,255,255,.12); }
-  .pill[aria-pressed="true"] { background:#fff; color:#0A0A0A; border-color:#fff; }
-  .desc { margin:0 0 12px; font-size:.78rem; color:var(--muted); min-height:2.4em; }
-  .gallery { display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; margin:0 -18px; padding:0 18px; scrollbar-width:none; }
-  .gallery::-webkit-scrollbar { display:none; }
-  .thumb { flex:none; width:108px; height:108px; border-radius:22px; scroll-snap-align:start; position:relative; overflow:hidden;
-    padding:10px; display:flex; flex-direction:column; justify-content:space-between; text-align:left; border:1px solid var(--line);
-    background:var(--surface); transition:transform .2s; }
-  .thumb:hover { transform:translateY(-2px); }
-  .thumb::before { content:""; position:absolute; inset:0; background:radial-gradient(120% 90% at var(--gx,100%) 0%,var(--tint) 0%,transparent 60%); opacity:.55; }
-  .thumb > * { position:relative; }
-  .thumb small { font-size:.58rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.7); }
-  .thumb b { font-size:.82rem; font-weight:700; line-height:1.1; letter-spacing:-.03em; }
-  .arrows { display:flex; justify-content:center; gap:10px; margin:12px 0 16px; }
-  .arrows .circle { width:32px; height:32px; }
-  .arrows .icon { width:15px; height:15px; }
-  .feed { display:grid; gap:16px; padding-top:14px; border-top:1px solid var(--line); }
-  .post { display:block; animation:rise .5s var(--ease) both; }
-  @keyframes rise { from { opacity:0; transform:translateY(10px); } }
-  .post p { margin:0 0 6px; font-size:.82rem; color:rgba(255,255,255,.88); line-height:1.4; }
-  .post b { font-size:.8rem; font-weight:600; }
-  .post .meta { font-size:.7rem; color:var(--muted); display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-  .badge { padding:2px 8px; border-radius:999px; background:rgba(255,255,255,.1); color:#fff; font-size:.64rem; font-weight:600; }
-  .ask { font-size:.72rem; font-weight:600; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .cv { display:flex; align-items:center; gap:12px; margin:0 0 12px; padding:12px 14px; border-radius:18px; color:#fff; text-decoration:none;
-    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.28); transition:background .2s,transform .15s; }
-  .cv:hover { background:rgba(255,255,255,.16); }
-  .cv:active { transform:scale(.98); }
-  .cv span { flex:1; } .cv b { display:block; font-size:.88rem; font-weight:600; } .cv small { font-size:.7rem; color:var(--muted); }
-  .cv .go { width:16px; height:16px; opacity:.7; }
-  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:0 0 10px; }
-  .steps div { padding:10px; border-radius:16px; background:rgba(255,255,255,.06); border:1px solid var(--line); font-size:.7rem; color:var(--muted); }
-  .steps b { display:block; color:#fff; font-size:.76rem; margin-bottom:2px; }
-  .fit { margin:0 0 16px; font-size:.72rem; color:var(--muted); }
-  .cta-bar { padding:10px 14px 14px; background:linear-gradient(180deg,transparent,rgba(10,10,10,.85) 40%); }
-  .cta-bar .cta { height:52px; }
 
   /* ---- brief sheet ---- */
   .scrim { position:absolute; inset:0; z-index:8; background:rgba(0,0,0,.55); opacity:0; visibility:hidden; transition:opacity .3s,visibility 0s .3s; }
@@ -215,7 +155,7 @@
     font-size:.8rem; font-weight:600; opacity:0; transition:opacity .2s; pointer-events:none; z-index:30; }
   .toast.on { opacity:1; }
   :focus-visible { outline:2px solid #80D8FF; outline-offset:2px; }
-  @media (max-height:700px) { .stats { margin-bottom:12px; } .bio { margin-bottom:10px; } .name { font-size:2.3rem; } .grab { display:none; } }
+  @media (max-height:700px) { .bio { margin-bottom:10px; } .name { font-size:2.3rem; } .grab { display:none; } }
   @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition-duration:.01ms !important; animation:none !important; } .hero .art { transform:scale(1.04) !important; } }
 </style>
 </head>
@@ -241,10 +181,6 @@
 
   <!-- top bar -->
   <header class="top">
-    <button class="circle" id="qrBtn" aria-label="Show QR code / collapse profile">
-      <svg class="icon i-qr"><use href="#i-qr"/></svg><svg class="icon i-down"><use href="#i-down"/></svg>
-    </button>
-    <span class="handle">@yugnavi</span>
     <button class="pill-btn" id="save">Save contact</button>
   </header>
 
@@ -253,7 +189,6 @@
     <div class="open-pill"><i></i>Open to projects &amp; collaborations</div>
     <div class="namerow">
       <h1 class="name">Guy Ivan<br>Ocon</h1>
-      <button class="link" id="seeProfile">See profile <svg class="icon"><use href="#i-right"/></svg></button>
     </div>
     <nav class="soc-row" aria-label="Find me online">
       <a href="https://github.com/yugnavi" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
@@ -269,38 +204,11 @@
     <p class="statement">Company or startup looking for a custom-built app? <em>I've got you covered.</em></p>
     <p class="bio">Software &amp; AI Engineer | Building Intelligent Digital Solutions for Businesses, Startups &amp; Organizations | Full-Stack • Mobile • IoT • AI</p>
     <button class="cta" data-brief>Start a project or collaboration <span class="arr" aria-hidden="true">→</span></button>
-    <a class="book" data-book href="https://cal.com/guyivanocon/15min" target="_blank" rel="noopener"><svg class="icon"><use href="#i-cal"/></svg>Book a free 15-min call</a>
-    <div class="grab" aria-hidden="true"></div>
-  </section>
-
-  <!-- expanded profile -->
-  <section class="panel" id="panel" aria-label="Full profile" aria-hidden="true">
-    <div class="scroll" id="scroll">
-      <div class="bar" aria-hidden="true"></div>
-      <div class="p-head">
-        <h2 class="p-name">Guy Ivan<br>Ocon</h2>
-        <button class="circle" id="collapse" aria-label="Collapse profile" style="margin-top:4px"><svg class="icon"><use href="#i-down"/></svg></button>
-      </div>
-      <p class="p-bio">Full-stack, mobile/IoT and applied-AI engineer. Software Applications Engineer at Nascent Technologies and volunteer Knowledge Management Manager at 2030 Youth Force PH. MEng AI at UP Diliman, BS CS Cum Laude from UP Mindanao.</p>
-      <a class="cv" href="assets/Guy_Ivan_Ocon_CV.pdf" target="_blank" rel="noopener" download="Guy_Ivan_Ocon_CV.pdf">
-        <svg class="icon"><use href="#i-dl"/></svg><span><b>Download my CV</b><small>PDF · 1 page</small></span><svg class="icon go"><use href="#i-right"/></svg>
-      </a>
-      <div class="steps">
-        <div><b>1 · Brief</b>Tell me what you need</div>
-        <div><b>2 · Call</b>Goals &amp; constraints</div>
-        <div><b>3 · Proposal</b>Scope, time, price</div>
-      </div>
-      <p class="fit">Best fit for nonprofits, startups, public health &amp; government, IoT teams and SDG / policy orgs.</p>
-      <div class="pills" id="pills" role="group" aria-label="Filter work by category"></div>
-      <p class="desc" id="desc"></p>
-      <div class="gallery" id="gallery" tabindex="0" aria-label="Project gallery"></div>
-      <div class="arrows">
-        <button class="circle" id="prev" aria-label="Previous"><svg class="icon"><use href="#i-left"/></svg></button>
-        <button class="circle" id="next" aria-label="Next"><svg class="icon"><use href="#i-right"/></svg></button>
-      </div>
-      <div class="feed" id="feed"></div>
+    <div class="row2">
+      <a class="book" data-book href="https://cal.com/guyivanocon/15min" target="_blank" rel="noopener"><svg class="icon"><use href="#i-cal"/></svg>Book a free call</a>
+      <a class="book" href="assets/Guy_Ivan_Ocon_CV.pdf" target="_blank" rel="noopener" download="Guy_Ivan_Ocon_CV.pdf"><svg class="icon"><use href="#i-dl"/></svg>Download CV</a>
     </div>
-    <div class="cta-bar"><button class="cta" data-brief>Start a project <span class="arr" aria-hidden="true">→</span></button></div>
+    <div class="grab" aria-hidden="true"></div>
   </section>
 
   <!-- brief sheet -->
@@ -356,85 +264,19 @@
 </section>
 </main>
 
-<dialog id="dlg">
-  <div id="qr"></div>
-  <p>Scan to open my card</p>
-  <button class="cta" id="close" style="height:48px">Close</button>
-</dialog>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
   const $ = id => document.getElementById(id);
-  const phone = $('phone');
   const url = location.href.split('#')[0];
   const src = new URLSearchParams(location.search).get('src'); // e.g. ?src=linkedin shows where leads come from
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- content (all from the GitHub profile) ----
-  const CATS = [
-    { id: 'all', label: 'All', desc: 'Full-stack, mobile/IoT and applied-AI work for clients, nonprofits and public-health teams.' },
-    { id: 'web', label: 'Web apps', desc: 'Web apps & internal tools: Next.js, React, TypeScript, Supabase. Dashboards, workflows, PDF reports.' },
-    { id: 'mobile', label: 'Mobile & IoT', desc: 'Flutter apps linked to ESP32 hardware over BLE, with offline buffering and cloud sync.' },
-    { id: 'data', label: 'Data & AI', desc: 'Python ETL, dashboards, forecasting and RAG / LLM assistants.' },
-    { id: 'nonprofit', label: 'Nonprofit', desc: 'Website redesign and WordPress for nonprofits, plus SDG research and policy briefs as a Knowledge Management Manager at 2030 Youth Force PH.' },
-  ];
-  const WORK = [
-    { cat: 'web', name: '2Track QCMS', tag: 'Luxembourg client', tint: '#80D8FF',
-      text: 'Quality-control records, order workflows and PDF inspection reports. Next.js, React, TypeScript, Supabase.' },
-    { cat: 'mobile', name: 'Battery Monitor', tag: 'Flutter + ESP32', tint: '#FFCA85',
-      text: 'BLE telemetry, offline buffering and Supabase sync linking ESP32 battery systems to a mobile app.' },
-    { cat: 'data', name: 'RabDash DC', tag: '400K+ records', tint: '#F48EBB',
-      text: 'Rabies analytics platform and forecasting for the Davao City Veterinarian\'s Office.' },
-    { cat: 'data', name: 'DiWA Surveillance', tag: '~70% less manual*', tint: '#80D8FF',
-      text: 'Python ETL pipelines, dashboards and a RAG assistant for disease information at UP Mindanao.' },
-    { cat: 'nonprofit', name: 'YMCA Manila & CERP', tag: 'Redesign + migration', tint: '#FFCA85',
-      text: 'Website redesign and migration for YMCA Manila, plus WordPress / Elementor Pro / ACF support for CERP.' },
-    { cat: 'nonprofit', name: '2030 Youth Force PH', tag: 'Volunteer · YFPH', tint: '#F48EBB',
-      text: 'Knowledge Management Manager coordinating SDG research and policy briefs. Analyzed the 2019, 2022 and 2025 Philippine Youth SDG Agendas.' },
-    { cat: 'nonprofit', name: 'From Commitment to Impact', tag: 'Independent policy brief', tint: '#80D8FF',
-      text: 'Policy brief on youth SDG commitments and indicators. Independent work, not commissioned or endorsed by YFPH or government agencies.' },
-    { cat: 'web', name: 'BantayLindol PH', tag: 'React + Leaflet', tint: '#F48EBB',
-      text: 'Earthquake dashboard built on PHIVOLCS data.' },
-    { cat: 'web', name: 'ExamGenie', tag: 'React + Supabase', tint: '#80D8FF',
-      text: 'Flashcards, practice activities, mock exams and progress dashboards.' },
-    { cat: 'data', name: 'BANTAI', tag: 'Registry', tint: '#FFCA85',
-      text: 'Pet registry and vaccination tracking.' },
-  ];
-
-  // ---- small components ----
-  const Pill = (c, on) => `<button class="pill" data-cat="${c.id}" aria-pressed="${on}">${c.label}</button>`;
-  const Thumb = (w, i) => `<button class="thumb" style="--tint:${w.tint};--gx:${i % 2 ? '0%' : '100%'}" data-ask="${w.cat}" aria-label="${w.name}: ask about a similar project">
-      <small>${w.tag}</small><b>${w.name}</b></button>`;
-  const Post = (w, i) => `<article class="post" style="animation-delay:${i * 50}ms">
-      <div><p>${w.text}</p>
-        <div class="meta"><b>${w.name}</b><span class="badge">${w.tag}</span><button class="ask" data-ask="${w.cat}">Want something similar?</button></div>
-      </div></article>`;
-
-  let cat = 'all';
-  function render() {
-    const items = WORK.filter(w => cat === 'all' || w.cat === cat);
-    $('pills').innerHTML = CATS.map(c => Pill(c, c.id === cat)).join('');
-    $('desc').textContent = CATS.find(c => c.id === cat).desc;
-    $('gallery').innerHTML = items.map(Thumb).join('');
-    $('gallery').scrollTo({ left: 0 });
-    $('feed').innerHTML = items.map(Post).join('');
-  }
-  render();
-
-  // ---- state: collapsed / expanded / brief sheet (hash keeps each linkable) ----
-  function setOpen(open, push = true) {
-    phone.classList.toggle('open', open);
-    $('panel').setAttribute('aria-hidden', !open);
-    $('profile').setAttribute('aria-hidden', open);
-    if (!open) { $('scroll').scrollTop = 0; phone.style.removeProperty('--py'); }
-    if (push) history.replaceState(null, '', location.pathname + location.search + (open ? '#work' : ''));
-  }
-  function setSheet(on, preset) {
+  // ---- sheets: brief form and in-app booking (hash keeps each linkable) ----
+  function setSheet(on) {
     $('sheet').classList.toggle('on', on); $('scrim').classList.toggle('on', on);
     $('sheet').setAttribute('aria-hidden', !on);
-    if (on) { if (preset) $('type').value = preset; setTimeout(() => $('form').elements.name.focus({ preventScroll: true }), 350); }
-    history.replaceState(null, '', location.pathname + location.search + (on ? '#contact' : phone.classList.contains('open') ? '#work' : ''));
+    if (on) setTimeout(() => $('form').elements.name.focus({ preventScroll: true }), 350);
+    history.replaceState(null, '', location.pathname + location.search + (on ? '#contact' : ''));
   }
   function setBook(on) {
     const f = $('bookFrame');
@@ -442,38 +284,22 @@
     if (on) setSheet(false);
     $('bookSheet').classList.toggle('on', on); $('scrim').classList.toggle('on', on);
     $('bookSheet').setAttribute('aria-hidden', !on);
-    history.replaceState(null, '', location.pathname + location.search + (on ? '#book' : phone.classList.contains('open') ? '#work' : ''));
+    history.replaceState(null, '', location.pathname + location.search + (on ? '#book' : ''));
   }
   $('bookClose').onclick = () => setBook(false);
-  $('seeProfile').onclick = () => setOpen(true);
-  $('collapse').onclick = () => setOpen(false);
-  $('qrBtn').onclick = () => phone.classList.contains('open') ? setOpen(false) : openQR();
   $('scrim').onclick = () => { setSheet(false); setBook(false); };
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
-    if ($('bookSheet').classList.contains('on')) setBook(false); else if ($('sheet').classList.contains('on')) setSheet(false); else if (phone.classList.contains('open')) setOpen(false);
+    if ($('bookSheet').classList.contains('on')) setBook(false); else if ($('sheet').classList.contains('on')) setSheet(false);
   });
   document.addEventListener('click', e => {
-    const pill = e.target.closest('[data-cat]');
-    if (pill) { cat = pill.dataset.cat; render(); return; }
     const bk = e.target.closest('[data-book]');
     if (bk) { e.preventDefault(); setBook(true); return; }
-    const ask = e.target.closest('[data-ask]');
-    if (ask) { setSheet(true, ask.dataset.ask); return; }
     if (e.target.closest('[data-brief]')) setSheet(true);
   });
-  if (location.hash === '#work' || location.hash === '#contact') setOpen(true, false);
   if (location.hash === '#contact') setSheet(true);
   if (location.hash === '#book') setBook(true);
 
-  // ---- gallery arrows + parallax ----
-  const by = d => $('gallery').scrollBy({ left: d * 124, behavior: reduce ? 'auto' : 'smooth' });
-  $('prev').onclick = () => by(-1); $('next').onclick = () => by(1);
-  if (!reduce) $('scroll').addEventListener('scroll', () => {
-    phone.style.setProperty('--py', Math.min($('scroll').scrollTop * -.18, 0) + 'px');
-  }, { passive: true });
-
-  // ---- actions ----
   function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1800); }
 
   // Save contact: build a vCard on the fly and download it (phones offer "Add to Contacts").
@@ -511,13 +337,6 @@
       `Need: ${need}`, `Timeline: ${f.get('when')}`, src ? `Source: ${src}` : '', '', f.get('msg')].join('\n');
     location.href = `mailto:oconguyivan@gmail.com?subject=${encodeURIComponent('Project inquiry: ' + need)}&body=${encodeURIComponent(body)}`;
   };
-
-  let qrMade = false;
-  function openQR() {
-    if (!qrMade) { new QRCode($('qr'), { text: url, width: 220, height: 220 }); qrMade = true; }
-    $('dlg').showModal();
-  }
-  $('close').onclick = () => $('dlg').close();
 </script>
 </body>
 </html>
